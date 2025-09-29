@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://fv33hrvkf3ym"]
+
+[ext_resource type="Script" uid="uid://cw6saf5lcto2o" path="res://addons/MultiplayCore/MultiPlay.gd" id="1_xiose"]
+[ext_resource type="PackedScene" uid="uid://4a0x8pfaq2vp" path="res://player/player_character.tscn" id="2_csopv"]
+[ext_resource type="PackedScene" uid="uid://cevw21bneaa3u" path="res://levels/hub_world/hub_world.tscn" id="2_r77kf"]
+[ext_resource type="PackedScene" uid="uid://nqwjjuweyf4k" path="res://ui/lobby/lobby_menu.tscn" id="3_3gdo0"]
+[ext_resource type="Script" uid="uid://df0xbo7wlpmf1" path="res://addons/MultiplayCore/net_protocols/ENetProtocol.gd" id="4_xa854"]
+
+[node name="Main" type="Node"]
+
+[node name="MultiPlayCore" type="Node" parent="."]
+script = ExtResource("1_xiose")
+player_scene = ExtResource("2_csopv")
+first_scene = ExtResource("2_r77kf")
+swap_input_action = "swap"
+metadata/_custom_type_script = "uid://cw6saf5lcto2o"
+
+[node name="ENetProtocol" type="Node" parent="MultiPlayCore"]
+script = ExtResource("4_xa854")
+metadata/_custom_type_script = "uid://df0xbo7wlpmf1"
+
+[node name="LobbyMenu" parent="." node_paths=PackedStringArray("mpc") instance=ExtResource("3_3gdo0")]
+mpc = NodePath("../MultiPlayCore")
