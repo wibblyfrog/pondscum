@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dyryonqls6omr" path="res://ui/lobby/lobby_menu.gd" id="1_grfnr"]
 
-[node name="LobbyMenu" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,38 +35,42 @@ theme_override_constants/margin_bottom = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Pond Scum"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="SingleplayerButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Single Player"
+
+[node name="SplitScreenButton" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+text = "Splitscreen"
+
+[node name="MultiplayerLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Multiplayer"
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Player  Info"
-
-[node name="PlayerInfo" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="UsernameInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PlayerInfo"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Username"
-expand_to_text_length = true
-
-[node name="PasswordInput" type="LineEdit" parent="PanelContainer/MarginContainer/VBoxContainer/PlayerInfo"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Password"
-expand_to_text_length = true
-secret = true
-
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HostLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Host Game"
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer/HostLabel"]
+layout_mode = 0
 
 [node name="HostPanel" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -100,7 +104,7 @@ layout_mode = 2
 text = "Host
 "
 
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="JoinLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Join Game"
 
@@ -127,5 +131,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Join"
 
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SingleplayerButton" to="." method="_on_singleplayer_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/SplitScreenButton" to="." method="_on_split_screen_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/HostPanel/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/JoinPanel/JoinButton" to="." method="_on_join_button_pressed"]

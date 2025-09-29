@@ -13,6 +13,7 @@ script = ExtResource("1_xiose")
 player_scene = ExtResource("2_csopv")
 first_scene = ExtResource("2_r77kf")
 swap_input_action = "swap"
+debug_gui_enabled = false
 metadata/_custom_type_script = "uid://cw6saf5lcto2o"
 
 [node name="ENetProtocol" type="Node" parent="MultiPlayCore"]

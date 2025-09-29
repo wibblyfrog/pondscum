@@ -1,4 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cevw21bneaa3u"]
+[gd_scene load_steps=10 format=3 uid="uid://cevw21bneaa3u"]
+
+[ext_resource type="Script" uid="uid://k31l7uje6anq" path="res://core/level.gd" id="1_b7bj7"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_ciyvu"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_b7bj7"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_n0ntw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2u8fk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -15,7 +20,11 @@ glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u8fk"]
 
+[sub_resource type="Resource" id="Resource_phxam"]
+script = ExtResource("3_n0ntw")
+
 [node name="HubWorld" type="Node3D"]
+script = ExtResource("1_b7bj7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wwg82")
@@ -31,3 +40,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_2u8fk")
+
+[node name="Camera" type="Camera3D" parent="."]
+
+[node name="PhantomCameraHost" type="Node" parent="Camera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("1_ciyvu")
+metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+script = ExtResource("2_b7bj7")
+follow_mode = 6
+tween_resource = SubResource("Resource_phxam")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
